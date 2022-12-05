@@ -3,7 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/addFilme"
-        android:icon="@drawable/ic_launcher_foreground"
         android:title="Add contact"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/addFilme"
+        android:title="Ordem A - Z"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/addFilme"
+        android:title="Ordem 1 - 10"
         app:showAsAction="ifRoom" />
 </menu>

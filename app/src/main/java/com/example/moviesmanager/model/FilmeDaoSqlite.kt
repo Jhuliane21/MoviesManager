@@ -6,14 +6,12 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import com.example.moviesmanager.R
-import java.lang.Boolean.getBoolean
 import java.sql.SQLException
-import java.util.Locale.FilteringMode
 
 class FilmeDaoSqlite (context: Context) : FilmeDao {
     companion object Constant {
-        private const val FILME_DATABASE_FILE = "contacts"
-        private const val FILME_TABLE = "contact"
+        private const val FILME_DATABASE_FILE = "filmes"
+        private const val FILME_TABLE = "filme"
         private const val ID_COLUMN = "id"
         private const val NOME_COLUMN = "name"
         private const val GENERO_COLUMN = "id"

@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.moviesmanager.R
 import com.example.moviesmanager.databinding.ActivityFilmeBinding
 import com.example.moviesmanager.model.Constant.EXTRA_FILME
 import com.example.moviesmanager.model.Constant.INVALID_FILME_ID
