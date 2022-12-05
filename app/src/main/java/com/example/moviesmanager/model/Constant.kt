@@ -1,7 +1,7 @@
 package com.example.moviesmanager.model
 
-class Constant {
-     val EXTRA_FILME = "EXTRA_FILME"
-     val VIEW_FILME = "VIEW_FILME"
-     val INVALID_FILME_ID = -1
+object Constant {
+     const val EXTRA_FILME = "EXTRA_FILME"
+     const val VIEW_FILME = "VIEW_FILME"
+     const val INVALID_FILME_ID = -1
 }
