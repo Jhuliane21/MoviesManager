@@ -6,11 +6,11 @@
         android:title="Add contact"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/addFilme"
-        android:title="Ordem A - Z"
+        android:id="@+id/ordemAlfa"
+        android:title="A-z"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/addFilme"
-        android:title="Ordem 1 - 10"
+        android:id="@+id/ordemNum"
+        android:title="0-10"
         app:showAsAction="ifRoom" />
 </menu>

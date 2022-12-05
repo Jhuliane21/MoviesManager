@@ -9,10 +9,9 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
+import br.edu.ifsp.ads.pdm.mycontacts.adapter.FilmeAdapter
 import com.example.moviesmanager.R
-import com.example.moviesmanager.adapter.FilmeAdapter
 import com.example.moviesmanager.controller.FilmeController
 import com.example.moviesmanager.databinding.ActivityMainBinding
 import com.example.moviesmanager.model.Constant.EXTRA_FILME
@@ -23,25 +22,22 @@ class MainActivity : AppCompatActivity() {
     private val amb: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
-    private val filmesList: MutableList<Filme> by lazy {
-        filmeController.getFilmes()
-    }
-
-
-    private lateinit var filmeAdapter: FilmeAdapter
-
-    private lateinit var carl: ActivityResultLauncher<Intent>
-
     private val filmeController: FilmeController by lazy {
         FilmeController(this)
     }
+    private val filmesList: MutableList<Filme> by lazy {
+        filmeController.getFilmes()
+    }
+    private lateinit var filmeAdapter: FilmeAdapter
+
+    private lateinit var carl: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(amb.root)
 
-        //filmeAdapter = FilmeAdapter(this, filmesList)
-        //amb.filmesLv.adapter = filmeAdapter
+        filmeAdapter = FilmeAdapter(this, filmesList)
+        amb.filmesLv.adapter = filmeAdapter
 
         carl = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult(),
@@ -84,6 +80,16 @@ class MainActivity : AppCompatActivity() {
                 return when(item.itemId) {
                     R.id.addFilme -> {
                         carl.launch(Intent(this, FilmeActivity::class.java))
+                        true
+                    }
+                    R.id.ordemAlfa ->{
+                        filmesList.sortedBy { it.nome }
+                        filmeAdapter.notifyDataSetChanged()
+                        true
+                    }
+                    R.id.ordemNum ->{
+                        filmesList.sortedBy { it.nota }
+                        filmeAdapter.notifyDataSetChanged()
                         true
                     }
                     else -> { false }

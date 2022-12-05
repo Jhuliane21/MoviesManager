@@ -73,7 +73,7 @@
 
     <Spinner
         android:id="@+id/spinner1"
-        android:layout_width="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="191dp"
         tools:layout_editor_absoluteY="249dp"
