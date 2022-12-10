@@ -10,6 +10,7 @@ import com.example.moviesmanager.model.Constant.INVALID_FILME_ID
 import com.example.moviesmanager.model.Constant.VIEW_FILME
 import com.example.moviesmanager.model.Filme
 
+@Suppress("DEPRECATION")
 class FilmeActivity : AppCompatActivity() {
     private val acb: ActivityFilmeBinding by lazy {
         ActivityFilmeBinding.inflate(layoutInflater)
@@ -45,18 +46,18 @@ class FilmeActivity : AppCompatActivity() {
         }
 
         acb.saveBt.setOnClickListener {
-            var assistido = ""
+            var assistidoValor: String
             if(acb.assistidoSw.isActivated){
-                assistido = "Sim"
+                assistidoValor = "Sim"
             }else{
-                assistido = "Não"
+                assistidoValor = "Não"
             }
             val filme = Filme(
                 id = filmeRecebido?.id?: INVALID_FILME_ID,
                 nome = acb.nomeEt.text.toString(),
-                genero = acb.spinner1.toString(),
+                genero = acb.spinner1.selectedItem.toString(),
                 duracao = acb.duracaoEt.text.toString(),
-                assistido = assistido,
+                assistido = assistidoValor,
                 anoLancamento = acb.anoEt.text.toString().toInt(),
                 produtora = acb.produtoraEt.text.toString(),
                 nota = acb.notaEt.text.toString().toInt()

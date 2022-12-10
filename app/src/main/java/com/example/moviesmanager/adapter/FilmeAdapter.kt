@@ -20,7 +20,6 @@ class FilmeAdapter(
         val filme = filmeList[position]
         var filmeCelulaView = convertView
         if (filmeCelulaView == null) {
-            // Inflo uma nova célula
             filmeCelulaView =
                 (context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(
                     R.layout.activity_celula_filme,

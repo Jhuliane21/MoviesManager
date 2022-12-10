@@ -14,15 +14,15 @@ class FilmeDaoSqlite (context: Context) : FilmeDao {
         private const val FILME_TABLE = "filme"
         private const val ID_COLUMN = "id"
         private const val NOME_COLUMN = "name"
-        private const val GENERO_COLUMN = "id"
-        private const val DURACAO_COLUMN = "name"
-        private const val ASSISTIDO_COLUMN = "name"
-        private const val ANO_COLUMN = "address"
-        private const val PRODUTORA_COLUMN = "phone"
-        private const val NOTA_COLUMN = "email"
+        private const val GENERO_COLUMN = "genero"
+        private const val DURACAO_COLUMN = "duracao"
+        private const val ASSISTIDO_COLUMN = "assistido"
+        private const val ANO_COLUMN = "ano"
+        private const val PRODUTORA_COLUMN = "produtora"
+        private const val NOTA_COLUMN = "nota"
 
         private const val CREATE_FILME_TABLE_STATEMENT =
-            "CREATE TABLE IF NOT EXISTS ${FILME_TABLE}TABLE ( " +
+            "CREATE TABLE IF NOT EXISTS $FILME_TABLE ( " +
                     "$ID_COLUMN INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "$NOME_COLUMN TEXT NOT NULL, " +
                     "$GENERO_COLUMN TEXT NOT NULL," +

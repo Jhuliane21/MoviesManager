@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">MoviesManager</string>
+    <string name="add_filme">Add Filme</string>
+    <string name="a_z">A-z</string>
+    <string name="_0_10">0-10</string>
     <string-array name="genero">
         <item>Romance</item>
         <item>Terror</item>
