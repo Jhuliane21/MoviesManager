@@ -10,13 +10,13 @@ import android.view.View
 import android.widget.AdapterView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import br.edu.ifsp.ads.pdm.mycontacts.adapter.FilmeAdapter
+import com.example.moviesmanager.adapter.FilmeAdapter
 import com.example.moviesmanager.R
 import com.example.moviesmanager.controller.FilmeController
 import com.example.moviesmanager.databinding.ActivityMainBinding
 import com.example.moviesmanager.model.Constant.EXTRA_FILME
 import com.example.moviesmanager.model.Constant.VIEW_FILME
-import com.example.moviesmanager.model.Filme
+import com.example.moviesmanager.model.entity.Filme
 
 class MainActivity : AppCompatActivity() {
     private val amb: ActivityMainBinding by lazy {
@@ -61,16 +61,15 @@ class MainActivity : AppCompatActivity() {
         }
                 registerForContextMenu(amb.filmesLv)
 
-                amb.filmesLv.onItemClickListener =
-                    AdapterView.OnItemClickListener { _, _, position, _ ->
-                        val filme = filmesList[position]
-                        val filmeIntent = Intent(this@MainActivity, FilmeActivity::class.java)
-                        filmeIntent.putExtra(EXTRA_FILME, filme)
-                        filmeIntent.putExtra(VIEW_FILME, true)
-                        startActivity(filmeIntent)
-                    }
+        amb.filmesLv.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+                val filme = filmesList[position]
+                val filmeIntent = Intent(this@MainActivity, FilmeActivity::class.java)
+                filmeIntent.putExtra(EXTRA_FILME, filme)
+                filmeIntent.putExtra(VIEW_FILME, false)
+                startActivity(filmeIntent)
             }
 
+    }
             override fun onCreateOptionsMenu(menu: Menu?): Boolean {
                 menuInflater.inflate(R.menu.activity_menu_main, menu)
                 return true

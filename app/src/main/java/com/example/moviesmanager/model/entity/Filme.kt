@@ -1,10 +1,11 @@
-package com.example.moviesmanager.model
+package com.example.moviesmanager.model.entity
 
 import android.os.Parcelable
 
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
+
 data class Filme(
     var id: Int,
     var nome: String,

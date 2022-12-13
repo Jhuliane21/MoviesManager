@@ -1,8 +1,8 @@
 package com.example.moviesmanager.controller
 
-import com.example.moviesmanager.model.Filme
-import com.example.moviesmanager.model.FilmeDao
-import com.example.moviesmanager.model.FilmeDaoSqlite
+import com.example.moviesmanager.model.entity.Filme
+import com.example.moviesmanager.model.dao.FilmeDao
+import com.example.moviesmanager.model.database.FilmeDaoSqlite
 import com.example.moviesmanager.view.MainActivity
 
 class FilmeController (mainActivity: MainActivity) {

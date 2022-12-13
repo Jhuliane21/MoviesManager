@@ -1,4 +1,6 @@
-package com.example.moviesmanager.model
+package com.example.moviesmanager.model.dao
+
+import com.example.moviesmanager.model.entity.Filme
 
 interface FilmeDao {
     fun addFilme(filme: Filme): Int

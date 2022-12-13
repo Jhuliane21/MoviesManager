@@ -1,4 +1,4 @@
-package br.edu.ifsp.ads.pdm.mycontacts.adapter
+package com.example.moviesmanager.adapter
 
 import android.content.Context
 import android.content.Context.LAYOUT_INFLATER_SERVICE
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.moviesmanager.R
-import com.example.moviesmanager.model.Filme
+import com.example.moviesmanager.model.entity.Filme
 
 class FilmeAdapter(
     context: Context,

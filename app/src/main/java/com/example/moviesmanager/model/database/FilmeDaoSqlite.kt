@@ -1,4 +1,4 @@
-package com.example.moviesmanager.model
+package com.example.moviesmanager.model.database
 
 import android.content.ContentValues
 import android.content.Context
@@ -6,6 +6,8 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import com.example.moviesmanager.R
+import com.example.moviesmanager.model.dao.FilmeDao
+import com.example.moviesmanager.model.entity.Filme
 import java.sql.SQLException
 
 class FilmeDaoSqlite (context: Context) : FilmeDao {
