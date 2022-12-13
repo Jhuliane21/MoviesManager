@@ -5,14 +5,17 @@
     <item
         android:id="@+id/addFilme"
         android:title="@string/add_filme"
+        android:icon="@drawable/ic_baseline_add_24"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/ordemAlfa"
         android:title="@string/a_z"
+        android:icon="@drawable/ic_baseline_abc_24"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/ordemNum"
         android:title="@string/_0_10"
+        android:icon="@drawable/ic_baseline_123_24"
         app:showAsAction="ifRoom"
         tools:ignore="HardcodedText" />
 </menu>

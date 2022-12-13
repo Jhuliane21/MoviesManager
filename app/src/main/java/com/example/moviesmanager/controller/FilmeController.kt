@@ -10,8 +10,8 @@ class FilmeController (mainActivity: MainActivity) {
     private val filmeDaoImpl2: FilmeDao = FilmeDaoFirebase(mainActivity)
     private val filmeDaoImpl: FilmeDao = FilmeDaoSqlite(mainActivity)
     fun addFilme(filme: Filme) = filmeDaoImpl2.addFilme(filme)
-    fun getFilme(id: Int) = filmeDaoImpl.getFilme(id)
+    fun getFilme(id: String) = filmeDaoImpl.getFilme(id)
     fun getFilmes() = filmeDaoImpl.getFilmes()
-    fun editFilme(filme: Filme) = filmeDaoImpl.updateFilme(filme)
-    fun removeFilme(id: Int) = filmeDaoImpl2.deleteFilme(id)
+    fun editFilme(filme: Filme) = filmeDaoImpl2.updateFilme(filme)
+    fun removeFilme(id: String) = filmeDaoImpl2.deleteFilme(id)
 }

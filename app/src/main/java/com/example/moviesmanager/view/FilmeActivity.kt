@@ -57,23 +57,23 @@ class FilmeActivity : AppCompatActivity() {
             }else{
                 assistidoValor = "Não"
             }
-                val movie = Filme(
-                    id = filmeRecebido?.id?: INVALID_FILME_ID,
-                    nome = amb.nomeEt.text.toString(),
-                    genero = amb.spinner1.selectedItem.toString(),
-                    duracao = amb.duracaoEt.text.toString(),
-                    assistido = assistidoValor,
-                    anoLancamento = amb.anoEt.text.toString().toInt(),
-                    produtora = amb.produtoraEt.text.toString(),
-                    nota = amb.notaEt.text.toString().toInt()
+            val movie = Filme(
+                id = (filmeRecebido?.id.toString()?: INVALID_FILME_ID) as String,
+                nome = amb.nomeEt.text.toString(),
+                genero = amb.spinner1.selectedItem.toString(),
+                duracao = amb.duracaoEt.text.toString(),
+                assistido = assistidoValor,
+                anoLancamento = amb.anoEt.text.toString().toInt(),
+                produtora = amb.produtoraEt.text.toString(),
+                nota = amb.notaEt.text.toString().toInt()
 
-                )
-                val resultIntent = Intent()
-                resultIntent.putExtra(EXTRA_FILME, movie)
-                setResult(RESULT_OK, resultIntent)
-                finish()
+            )
+            val resultIntent = Intent()
+            resultIntent.putExtra(EXTRA_FILME, movie)
+            setResult(RESULT_OK, resultIntent)
+            finish()
 
-            }
         }
+    }
 
 }

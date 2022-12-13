@@ -25,7 +25,7 @@ class FilmeDaoSqlite (context: Context) : FilmeDao {
 
         private const val CREATE_FILME_TABLE_STATEMENT =
             "CREATE TABLE IF NOT EXISTS $FILME_TABLE ( " +
-                    "$ID_COLUMN INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "$ID_COLUMN STRING PRIMARY KEY AUTOINCREMENT, " +
                     "$NOME_COLUMN TEXT NOT NULL, " +
                     "$GENERO_COLUMN TEXT NOT NULL," +
                     "$DURACAO_COLUMN TEXT NOT NULL,"+
@@ -74,7 +74,7 @@ class FilmeDaoSqlite (context: Context) : FilmeDao {
     }
 
     private fun Cursor.rowToFilme() = Filme(
-        getInt(getColumnIndexOrThrow(ID_COLUMN)),
+        getString(getColumnIndexOrThrow(ID_COLUMN)),
         getString(getColumnIndexOrThrow(NOME_COLUMN)),
         getString(getColumnIndexOrThrow(GENERO_COLUMN)),
         getString(getColumnIndexOrThrow(DURACAO_COLUMN)),
@@ -89,10 +89,10 @@ class FilmeDaoSqlite (context: Context) : FilmeDao {
         FILME_TABLE,
         null,
         contactToContentValues(filme)
-    ).toInt()
+    ).toString()
 
 
-    override fun getFilme(id: Int): Filme? {
+    override fun getFilme(id: String): Filme? {
         val cursor = filmeSpliteDatabase.rawQuery(
             "SELECT * FROM $FILME_TABLE WHERE $ID_COLUMN = ?",
             arrayOf(id.toString())
@@ -123,7 +123,7 @@ class FilmeDaoSqlite (context: Context) : FilmeDao {
         arrayOf(filme.id.toString())
     )
 
-    override fun deleteFilme(id: Int) =
+    override fun deleteFilme(id: String) =
         filmeSpliteDatabase.delete(
             FILME_TABLE,
             "$ID_COLUMN = ?",

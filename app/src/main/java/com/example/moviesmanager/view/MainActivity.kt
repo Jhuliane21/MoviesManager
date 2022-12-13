@@ -17,8 +17,6 @@ import com.example.moviesmanager.databinding.ActivityMainBinding
 import com.example.moviesmanager.model.Constant.EXTRA_FILME
 import com.example.moviesmanager.model.Constant.VIEW_FILME
 import com.example.moviesmanager.model.entity.Filme
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
     private val amb: ActivityMainBinding by lazy {
@@ -62,69 +60,69 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-                registerForContextMenu(amb.filmesLv)
+        registerForContextMenu(amb.filmesLv)
 
         amb.filmesLv.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            val filme = filmesList[position]
+            val filmeIntent = Intent(this@MainActivity, FilmeActivity::class.java)
+            filmeIntent.putExtra(EXTRA_FILME, filme)
+            filmeIntent.putExtra(VIEW_FILME, false)
+            startActivity(filmeIntent)
+        }
+
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.activity_menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.addFilme -> {
+                carl.launch(Intent(this, FilmeActivity::class.java))
+                true
+            }
+            R.id.ordemAlfa ->{
+                filmesList.sortedBy { it.nome }
+                filmeAdapter.notifyDataSetChanged()
+                true
+            }
+            R.id.ordemNum ->{
+                filmesList.sortedBy { it.nota }
+                filmeAdapter.notifyDataSetChanged()
+                true
+            }
+            else -> { false }
+        }
+    }
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        menuInflater.inflate(R.menu.activity_context_menu, menu)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        val position = (item.menuInfo as AdapterView.AdapterContextMenuInfo).position
+        return when(item.itemId) {
+            R.id.removeMi -> {
+                filmeController.removeFilme(filmesList[position].id)
+                filmesList.removeAt(position)
+                filmeAdapter.notifyDataSetChanged()
+                true
+            }
+            R.id.editarMi -> {
                 val filme = filmesList[position]
-                val filmeIntent = Intent(this@MainActivity, FilmeActivity::class.java)
+                val filmeIntent = Intent(this, FilmeActivity::class.java)
                 filmeIntent.putExtra(EXTRA_FILME, filme)
                 filmeIntent.putExtra(VIEW_FILME, false)
-                startActivity(filmeIntent)
+                carl.launch(filmeIntent)
+                true
             }
-
+            else -> { false }
+        }
     }
-            override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-                menuInflater.inflate(R.menu.activity_menu_main, menu)
-                return true
-            }
 
-            override fun onOptionsItemSelected(item: MenuItem): Boolean {
-                return when(item.itemId) {
-                    R.id.addFilme -> {
-                        carl.launch(Intent(this, FilmeActivity::class.java))
-                        true
-                    }
-                    R.id.ordemAlfa ->{
-                        filmesList.sortedBy { it.nome }
-                        filmeAdapter.notifyDataSetChanged()
-                        true
-                    }
-                    R.id.ordemNum ->{
-                        filmesList.sortedBy { it.nota }
-                        filmeAdapter.notifyDataSetChanged()
-                        true
-                    }
-                    else -> { false }
-                }
-            }
-
-            override fun onCreateContextMenu(
-                menu: ContextMenu?,
-                v: View?,
-                menuInfo: ContextMenu.ContextMenuInfo?
-            ) {
-                menuInflater.inflate(R.menu.activity_context_menu, menu)
-            }
-
-            override fun onContextItemSelected(item: MenuItem): Boolean {
-                val position = (item.menuInfo as AdapterView.AdapterContextMenuInfo).position
-                return when(item.itemId) {
-                    R.id.removeMi -> {
-                        filmeController.removeFilme(filmesList[position].id)
-                        filmesList.removeAt(position)
-                        filmeAdapter.notifyDataSetChanged()
-                        true
-                    }
-                    R.id.editarMi -> {
-                        val filme = filmesList[position]
-                        val filmeIntent = Intent(this, FilmeActivity::class.java)
-                        filmeIntent.putExtra(EXTRA_FILME, filme)
-                        filmeIntent.putExtra(VIEW_FILME, false)
-                        carl.launch(filmeIntent)
-                        true
-                    }
-                    else -> { false }
-                }
-            }
-
-    }
+}
