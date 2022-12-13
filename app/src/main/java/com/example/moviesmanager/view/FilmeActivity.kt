@@ -10,12 +10,14 @@ import com.example.moviesmanager.model.Constant.EXTRA_FILME
 import com.example.moviesmanager.model.Constant.INVALID_FILME_ID
 import com.example.moviesmanager.model.Constant.VIEW_FILME
 import com.example.moviesmanager.model.entity.Filme
+import com.google.firebase.database.DatabaseReference
 
 
 class FilmeActivity : AppCompatActivity() {
     private val amb: ActivityFilmeBinding by lazy {
         ActivityFilmeBinding.inflate(layoutInflater)
     }
+    private lateinit var dbReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

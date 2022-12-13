@@ -17,6 +17,8 @@ import com.example.moviesmanager.databinding.ActivityMainBinding
 import com.example.moviesmanager.model.Constant.EXTRA_FILME
 import com.example.moviesmanager.model.Constant.VIEW_FILME
 import com.example.moviesmanager.model.entity.Filme
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
     private val amb: ActivityMainBinding by lazy {
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(amb.root)
+
 
         filmeAdapter = FilmeAdapter(this, filmesList)
         amb.filmesLv.adapter = filmeAdapter
