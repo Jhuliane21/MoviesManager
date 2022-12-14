@@ -10,5 +10,9 @@
         <item>Aventura</item>
         <item>Suspense</item>
     </string-array>
+    <string-array name="assistido">
+        <item>Sim</item>
+        <item>Não</item>
+    </string-array>
 
 </resources>

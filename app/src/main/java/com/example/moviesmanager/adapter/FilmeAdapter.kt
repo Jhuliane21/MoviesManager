@@ -14,7 +14,7 @@ class FilmeAdapter(
     context: Context,
     private val filmeList: MutableList<Filme>
 ) : ArrayAdapter<Filme>(context, R.layout.activity_celula_filme, filmeList) {
-    private data class CelulaFilmeHolder(val nomeTv: TextView, val generoTv: TextView)
+    private data class CelulaFilmeHolder(val nomeTv: TextView, val generoTv: TextView, val notaTv: TextView)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val filme = filmeList[position]
@@ -30,6 +30,7 @@ class FilmeAdapter(
             val celulaFilmeHolder = CelulaFilmeHolder(
                 filmeCelulaView.findViewById(R.id.nomeTv),
                 filmeCelulaView.findViewById(R.id.generoTv),
+                filmeCelulaView.findViewById(R.id.notaTv),
             )
             filmeCelulaView.tag = celulaFilmeHolder
         }
@@ -37,6 +38,7 @@ class FilmeAdapter(
         with(filmeCelulaView?.tag as CelulaFilmeHolder) {
             nomeTv.text = filme.nome
             generoTv.text = filme.genero
+            notaTv.text = "⭐ " + filme.nota
         }
 
         return filmeCelulaView

@@ -60,16 +60,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/produtoraEt" />
 
-    <Switch
-        android:id="@+id/assistidoSw"
+    <TextView
+        android:id="@+id/assistidoTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Assistido?"
-        tools:layout_editor_absoluteX="23dp"
-        tools:layout_editor_absoluteY="208dp"
+        tools:ignore="MissingConstraints"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notaEt" />
+        app:layout_constraintTop_toBottomOf="@+id/notaEt"/>
+    <Spinner
+        android:id="@+id/assistidoSp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="23dp"
+        tools:layout_editor_absoluteY="208dp"
+        android:entries="@array/assistido"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assistidoTv" />
 
     <Spinner
         android:id="@+id/spinner1"
@@ -80,7 +89,7 @@
         android:entries="@array/genero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/assistidoSw"  />
+        app:layout_constraintTop_toBottomOf="@+id/assistidoSp"  />
 
     <Button
         android:id="@+id/saveBt"
