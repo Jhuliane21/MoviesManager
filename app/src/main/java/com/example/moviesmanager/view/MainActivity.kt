@@ -17,17 +17,17 @@ import com.example.moviesmanager.databinding.ActivityMainBinding
 import com.example.moviesmanager.model.Constant.EXTRA_FILME
 import com.example.moviesmanager.model.Constant.VIEW_FILME
 import com.example.moviesmanager.model.entity.Filme
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
     private val amb: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
-    private val filmeController: FilmeController by lazy {
-        FilmeController(this)
-    }
-    private val filmesList: MutableList<Filme> by lazy {
-        filmeController.getFilmes()
-    }
+    private val filmeController: FilmeController = FilmeController(this)
+
+    private val filmesList: MutableList<Filme> = filmeController.getFilmes()
+
     private lateinit var filmeAdapter: FilmeAdapter
 
     private lateinit var carl: ActivityResultLauncher<Intent>
@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
                         _filme.id = filmeController.addFilme(_filme)
                         filmesList.add(_filme)
                     }
-                    filmesList.sortBy { it.nome }
                     filmeAdapter.notifyDataSetChanged()
                 }
             }
@@ -83,12 +82,12 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.ordemAlfa ->{
-                filmesList.sortedBy { it.nome }
+                filmesList.sortBy { it.nome }
                 filmeAdapter.notifyDataSetChanged()
                 true
             }
             R.id.ordemNum ->{
-                filmesList.sortedBy { it.nota }
+                filmesList.sortBy { it.nota }
                 filmeAdapter.notifyDataSetChanged()
                 true
             }

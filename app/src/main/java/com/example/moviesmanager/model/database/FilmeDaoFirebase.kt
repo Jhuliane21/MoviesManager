@@ -1,14 +1,19 @@
 package com.example.moviesmanager.model.database
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import com.example.moviesmanager.model.dao.FilmeDao
 import com.example.moviesmanager.model.entity.Filme
 import com.example.moviesmanager.view.MainActivity
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.childEvents
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
+
 
 class FilmeDaoFirebase(mainActivity: MainActivity) : FilmeDao {
     private lateinit var dbReference : DatabaseReference
-    private lateinit var listaFilmes : MutableList<Filme>
 
     override fun addFilme(filme: Filme): String {
         dbReference = FirebaseDatabase.getInstance().getReference("Filmes")
@@ -22,8 +27,25 @@ class FilmeDaoFirebase(mainActivity: MainActivity) : FilmeDao {
     }
 
     override fun getFilmes(): MutableList<Filme> {
+        var listaFilmes: MutableList<Filme> = mutableListOf<Filme>()
         dbReference = FirebaseDatabase.getInstance().getReference("Filmes")
-        listaFilmes.add(Filme("000000", "Crepusculo", "romance", "200", "Sim", 2000, "Disney", 10))
+        dbReference.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listaFilmes.clear()
+                if(snapshot.exists()) {
+                    for (filme in snapshot.children) {
+                        var filmeDados = filme.getValue(Filme::class.java)
+                        listaFilmes.add(filmeDados!!)
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+
+
         return listaFilmes
     }
 
@@ -36,6 +58,6 @@ class FilmeDaoFirebase(mainActivity: MainActivity) : FilmeDao {
     override fun deleteFilme(id: String): Int {
         dbReference = FirebaseDatabase.getInstance().getReference("Filmes")
         dbReference.child(id).removeValue();
-        return id.toInt()
+        return 1
     }
 }
